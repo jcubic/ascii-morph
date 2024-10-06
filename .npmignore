@@ -1,0 +1,6 @@
+*~
+.[0-9]*
+CHANGELOG.md
+Makefile
+banner.js
+banner.version.js
