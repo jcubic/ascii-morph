@@ -16,7 +16,7 @@ export default function AsciiMorph(canvasSize) {
    */
 
   function repeat(pattern, count) {
-      return pattern.replace(count);
+    return pattern.replace(count);
   }
 
   function replaceAt(string, index, character ) {
@@ -28,7 +28,7 @@ export default function AsciiMorph(canvasSize) {
    */
 
   function squareOutData(data) {
-     var i;
+    var i;
     var renderDimensions = {
       x: 0,
       y: data.length
@@ -139,10 +139,7 @@ export default function AsciiMorph(canvasSize) {
   }
 
   function renderSquareData(element, data) {
-    element.innerHTML = '';
-    for( var i = 0; i < data.length; i++ ) {
-      element.innerHTML = element.innerHTML + data[i] + '\n';
-    }
+    element.innerHTML = data.join('\n');
   }
 
   // Morph between whatever two static frames
