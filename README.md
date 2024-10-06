@@ -1,5 +1,6 @@
-## AsciiMorph
-AsciiMorph is a small stand alone javascript library for rendering ascii art and creations into elements, allowing for them to be changed out with a morphing transition.
+# Ascii Morph
+
+Ascii Morph is a small stand alone javascript library for rendering ascii art and creations into elements, allowing for them to be changed out with a morphing transition.
 
 ### Demo
 Here's a gif of it in action. You can also play with the [demo live here](http://codepen.io/tholman/full/BQLQyo).
