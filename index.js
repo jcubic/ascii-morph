@@ -5,38 +5,18 @@
  * Copyright (c) 2016 Tim Holman - http://tholman.com
  */
 
-var AsciiMorph = (function() {
+export default function AsciiMorph(canvasSize) {
 
   'use strict';
 
-  var element = null;
-  var canvasDimensions = {};
-
-  var renderedData = [];
-  var framesToAnimate = [];
-  var myTimeout = null;
+  var canvasDimensions = canvasSize;
 
   /**
    * Utils
    */
 
-  function extend(target, source) {
-    for (var key in source) {
-      if (!(key in target)) {
-        target[key] = source[key];
-      }
-    }
-    return target;
-  }
-
   function repeat(pattern, count) {
-      if (count < 1) return '';
-      var result = '';
-      while (count > 1) {
-          if (count & 1) result += pattern;
-          count >>= 1, pattern += pattern;
-      }
-      return result + pattern;
+      return pattern.replace(count);
   }
 
   function replaceAt(string, index, character ) {
@@ -46,13 +26,6 @@ var AsciiMorph = (function() {
   /**
    * AsciiMorph
    */
-
-  function init(el, canvasSize) {
-
-    // Save the element
-    element = el;
-    canvasDimensions = canvasSize;
-  }
 
   function squareOutData(data) {
      var i;
@@ -160,34 +133,29 @@ var AsciiMorph = (function() {
     return data;
   }
 
-  function render(data) {
+  function render(element, data) {
     var ourData = squareOutData(data.slice());
-    renderSquareData(ourData);
+    renderSquareData(element, ourData);
   }
 
-  function renderSquareData(data) {
+  function renderSquareData(element, data) {
     element.innerHTML = '';
     for( var i = 0; i < data.length; i++ ) {
       element.innerHTML = element.innerHTML + data[i] + '\n';
     }
-
-    renderedData = data;
   }
 
-  // Morph between whatever is current, to the new frame
-  function morph(data) {
-
-    clearTimeout(myTimeout);
-    var frameData = prepareFrames(data.slice());
-    animateFrames(frameData);
+  // Morph between whatever two static frames
+  function morph(start, end) {
+    return prepareFrames([...start], [...end]);
   }
 
-  function prepareFrames(data) {
+  function prepareFrames(start, end) {
 
     var deconstructionFrames = [];
     var constructionFrames = [];
 
-    var clonedData = renderedData
+    var clonedData = start;
 
     // If its taking more than 100 frames, its probably somehow broken
     // Get the deconscrution frames
@@ -201,7 +169,7 @@ var AsciiMorph = (function() {
     }
 
     // Get the constuction frames for the new data
-    var squareData = squareOutData(data);
+    var squareData = squareOutData(end);
     constructionFrames.unshift(squareData.slice(0));
     for( var i = 0; i < 100; i++ ) {
       var newData = getMorphedFrame(squareData);
@@ -215,37 +183,28 @@ var AsciiMorph = (function() {
     return deconstructionFrames.concat(constructionFrames)
   }
 
-  function animateFrames(frameData) {
-    framesToAnimate = frameData;
-    animateFrame();
+  function animate(frames, callback) {
+    const framesToAnimate = [...frames];
+    let myTimeout;
+    (function loop() {
+      myTimeout = setTimeout(function() {
+
+        callback(framesToAnimate[0]);
+        framesToAnimate.shift();
+        if (framesToAnimate.length > 0) {
+          loop();
+        }
+      }, 20)
+    })();
   }
 
-  function animateFrame() {
-    myTimeout = setTimeout(function() {
-
-      renderSquareData(framesToAnimate[0]);
-      framesToAnimate.shift();
-      if( framesToAnimate.length > 0 ) {
-        animateFrame();
-      }
-    }, 20)
-
-    // framesToAnimate
+  function update(element) {
+    return data => render(element, data);
   }
 
-  function main(element, canvasSize) {
-
-    if( !element || !canvasSize ) {
-      console.log("sorry, I need an element and a canvas size");
-      return;
-    }
-
-    init(element, canvasSize);
-  }
-
-  return extend(main, {
-    render: render,
-    morph: morph
-  });
-
-})();
+  return {
+    morph,
+    update,
+    animate
+  };
+};
