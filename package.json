@@ -1,0 +1,10 @@
+{
+  "name": "ascii-morph",
+  "version": "0.0.1-alpha",
+  "description": "AsciiMorph is a small stand alone javascript library for rendering ascii art and creations into elements, allowing for them to be changed out with a morphing transition.",
+  "main": "asciiMorph.js",
+  "scripts": { },
+  "keywords": [],
+  "author": "Jakub T. Jankiewicz <jcubic@onet.pl> (https://jcubic.pl/me/)",
+  "license": "MIT"
+}
