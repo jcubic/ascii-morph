@@ -180,19 +180,25 @@ export default function AsciiMorph(canvasSize) {
     return deconstructionFrames.concat(constructionFrames)
   }
 
-  function animate(frames, callback) {
+  function animate(frames, callback, { signal } = {}) {
     const framesToAnimate = [...frames];
     let myTimeout;
-    (function loop() {
-      myTimeout = setTimeout(function() {
-
-        callback(framesToAnimate[0]);
-        framesToAnimate.shift();
-        if (framesToAnimate.length > 0) {
-          loop();
-        }
-      }, 20)
-    })();
+    return new Promise((resolve, reject) => {
+      (function loop() {
+        myTimeout = setTimeout(function() {
+          if (signal?.aborted) {
+            return reject('aborted');
+          }
+          callback(framesToAnimate[0]);
+          framesToAnimate.shift();
+          if (framesToAnimate.length > 0) {
+            loop();
+          } else {
+            resolve();
+          }
+        }, 20)
+      })();
+    });
   }
 
   function update(element) {

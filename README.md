@@ -2,18 +2,22 @@
 
 Ascii Morph is a small stand alone javascript library for rendering ascii art and creations into elements, allowing for them to be changed out with a morphing transition.
 
-### Demo
-Here's a gif of it in action. You can also play with the [demo live here](http://codepen.io/tholman/full/BQLQyo).
+## Demo
+Here's a gif of it in action. You can also play with the [demo live here](https://codepen.io/jcubic/pen/dyxXdLE).
 
 ![Ascii Morph in action](https://s3.amazonaws.com/tholman.com/static-assets/ascii-morph-demo.gif)
 
-### Usage
+## Usage
 
-This is example usage:
+### Installation
+
+```
+npm install ascii-morph
+```
+
+This is example usage. First you need two frames as array of lines:
 
 ```javascript
-import AsciiMorph from 'ascii-morph';
-
 const bird = [
   "                             /",
   "                            /",
@@ -57,6 +61,12 @@ const mona = [
   "/88:.__ ,       _%-' ---  -",
   "    '''::===..-'   =  --.  `",
 ];
+```
+
+Then you can create and animation between those two frames:
+
+```javascript
+import AsciiMorph from 'ascii-morph';
 
 const anim = AsciiMorph({ x: 50, y: 25 });
 
@@ -67,7 +77,33 @@ anim.animate(frames, function(frame) {
 });
 ```
 
-### License
+> [!NOTE]
+> `\x1b[2J` ANSI Escape code will clear the terminal.
+
+When using in Browser you can use helper function that will update the DOM:
+
+```javascript
+const render = anim.update(document.querySelector('pre'));
+
+anim.animate(frames, render);
+```
+
+You can also use the animate and update the DOM yourself. You can also use frames directly.
+`frames` are an array of frames similar to the input ones.
+
+### AbortSignal
+
+`animate` function return a Promise and accept [abort signal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal).
+
+```javascript
+anim.animate(frames, render, { signal: AbortSignal.timeout(5000) }).then(() => {
+  console.log('animation finished');
+}).catch(() => {
+  console.log('animation aborted');
+});
+```
+
+## License
 
 Copyright (c) 2024 Jakub Jankiewicz https://jcu.bi
 
