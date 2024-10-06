@@ -1,4 +1,4 @@
-# Ascii Morph
+# ASCII Morph
 
 [![npm](https://img.shields.io/badge/npm-0.2.0-blue.svg)](https://www.npmjs.com/package/ascii-morph)
 [![License](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/license/MIT)
