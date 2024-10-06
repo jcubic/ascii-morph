@@ -1,4 +1,4 @@
-VERSION=0.2.0
+VERSION=0.2.1
 DATE=`date -uR`
 YEAR=`date +%Y`
 
@@ -12,6 +12,9 @@ package.json: .$(VERSION)
 
 package-lock.json: package.json
 	npm install
+
+README.md: .$(VERSION)
+	sed -i -e "s/\(npm-\)[^-]\+\(-blue.svg\)/\1$(VERSION)\2/" -e "s/\(2024\)-[0-9]\+/\1-$(YEAR)/" README.md
 
 banner.version.js: .$(VERSION) banner.js Makefile
 	sed -e "s/{{VER}}/$(VERSION)/" -e "s/\(2024\)-[0-9]\+/\1-$(YEAR)/" -e "s/{{DATE}}/$(DATE)/" banner.js > banner.version.js

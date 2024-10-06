@@ -1,6 +1,6 @@
 {
   "name": "ascii-morph",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "description": "AsciiMorph is a small stand alone javascript library for rendering ascii art and creations into elements, allowing for them to be changed out with a morphing transition.",
   "main": "index.js",
@@ -8,13 +8,15 @@
   "keywords": [],
   "author": "Jakub T. Jankiewicz <jcubic@onet.pl> (https://jcubic.pl/me/)",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jcubic/ascii-morph/issues"
+  },
+  "homepage": "https://github.com/jcubic/ascii-morph",
   "devDependencies": {
+    "@babel/core": "^7.25.7",
+    "@babel/preset-env": "^7.25.7",
     "browserify": "^17.0.1",
     "esmify": "^2.1.1",
     "uglify-js": "^3.19.3"
-  },
-  "dependencies": {
-    "@babel/core": "^7.25.7",
-    "@babel/preset-env": "^7.25.7"
   }
 }
