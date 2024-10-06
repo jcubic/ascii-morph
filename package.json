@@ -1,6 +1,6 @@
 {
   "name": "ascii-morph",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "module",
   "description": "AsciiMorph is a small stand alone javascript library for rendering ascii art and creations into elements, allowing for them to be changed out with a morphing transition.",
   "main": "index.js",

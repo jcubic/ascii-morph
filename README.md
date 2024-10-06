@@ -1,6 +1,6 @@
 # ASCII Morph
 
-[![npm](https://img.shields.io/badge/npm-0.2.1-blue.svg)](https://www.npmjs.com/package/ascii-morph)
+[![npm](https://img.shields.io/badge/npm-0.2.2-blue.svg)](https://www.npmjs.com/package/ascii-morph)
 [![License](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/license/MIT)
 
 [Ascii Morph](https://github.com/jcubic/ascii-morph) is a small stand alone javascript library for rendering ascii art and creations into elements, allowing for them to be changed out with a morphing transition.
