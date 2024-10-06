@@ -83,6 +83,9 @@ AsciiMorph.morph(mona);
 
 ### License
 
+Copyright (c) 2024 Jakub Jankiewicz https://jcu.bi
+
 Copyright (c) 2016 Tim Holman - http://tholman.com
+
 
 [The MIT License](https://github.com/tholman/ascii-morph/blob/master/license.md)
