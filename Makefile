@@ -23,7 +23,7 @@ index.js: .$(VERSION) Makefile
 	sed -i -e "s/\(* ASCII-Morph .* (v. \)\([^)]\+\)/\1$(VERSION)/" -e "s/\(2024\)-[0-9]\+/\1-$(YEAR)/" index.js
 
 index.umd.js: index.js banner.version.js Makefile
-	npx browserify -e index.js -s AsciiMorph -p esmify -o tmp.js
+	npx browserify -e index.js -s AsciiMorph -p esmify -o tmp.js --standalone-transform esm2cjs
 	cat banner.version.js tmp.js > index.umd.js
 	rm tmp.js
 
