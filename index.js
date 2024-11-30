@@ -1,5 +1,5 @@
 /**
- * ASCII-Morph - JavaScript morphic animation (v. 0.2.0)
+ * ASCII-Morph - JavaScript morphic animation (v. 0.2.3)
  *
  * Copyright (c) 2024 Jakub T. Jankiewicz https://jcu.bi
  * Copyright (c) 2016 Tim Holman - http://tholman.com

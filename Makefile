@@ -1,4 +1,4 @@
-VERSION=0.2.2
+VERSION=0.2.3
 DATE=`date -uR`
 YEAR=`date +%Y`
 
@@ -20,10 +20,10 @@ banner.version.js: .$(VERSION) banner.js Makefile
 	sed -e "s/{{VER}}/$(VERSION)/" -e "s/\(2024\)-[0-9]\+/\1-$(YEAR)/" -e "s/{{DATE}}/$(DATE)/" banner.js > banner.version.js
 
 index.js: .$(VERSION) Makefile
-	sed -i -e "s/\(* Wayne .* (v. \)\([^)]\+\)/\1$(VERSION)/" -e "s/\(2022\)-[0-9]\+/\1-$(YEAR)/" index.js
+	sed -i -e "s/\(* ASCII-Morph .* (v. \)\([^)]\+\)/\1$(VERSION)/" -e "s/\(2024\)-[0-9]\+/\1-$(YEAR)/" index.js
 
 index.umd.js: index.js banner.version.js Makefile
-	npx browserify -e index.js -s wayne -p esmify -o tmp.js
+	npx browserify -e index.js -s AsciiMorph -p esmify -o tmp.js
 	cat banner.version.js tmp.js > index.umd.js
 	rm tmp.js
 
