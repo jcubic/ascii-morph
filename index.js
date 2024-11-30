@@ -5,7 +5,7 @@
  * Copyright (c) 2016 Tim Holman - http://tholman.com
  */
 
-export default function AsciiMorph(canvasSize) {
+function AsciiMorph(canvasSize) {
 
   'use strict';
 
@@ -211,3 +211,6 @@ export default function AsciiMorph(canvasSize) {
     animate
   };
 };
+
+export { AsciiMorph };
+export default AsciiMorph;
