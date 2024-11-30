@@ -138,13 +138,13 @@ function AsciiMorph(canvasSize) {
     renderSquareData(element, ourData);
   }
 
-  function renderSquareData(element, data) {
+  function render(element, data) {
     element.innerHTML = data.join('\n');
   }
 
   // Morph between whatever two static frames
   function morph(start, end) {
-    return prepareFrames([...start], [...end]);
+    return prepareFrames([...start], [...end]).map(squareOutData);
   }
 
   function prepareFrames(start, end) {
