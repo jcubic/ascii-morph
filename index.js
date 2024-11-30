@@ -212,5 +212,8 @@ function AsciiMorph(canvasSize) {
   };
 };
 
-export { AsciiMorph };
 export default AsciiMorph;
+
+if (typeof module !== 'undefined') {
+    module.exports = AsciiMorph;
+}
